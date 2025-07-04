@@ -1,0 +1,5 @@
+__pycache__/
+.env
+*.pyc
+media/
+__init__.pyc

@@ -1,0 +1,24 @@
+# - Django Core 
+Django>=4.2
+djangorestframework>=3.14.0
+django-cors-headers
+django-debug-toolbar
+drf-spectacular
+
+# FastAPI Stack -
+fastapi>=0.110
+uvicorn[standard]>=0.25.0
+httpx[http2]
+python-jose[cryptography]
+passlib[bcrypt]
+
+# -Env, DB, ORM ---
+python-dotenv
+psycopg2-binary
+sqlalchemy[asyncio]
+asyncpg
+
+# --- Testing ---
+pytest
+pytest-django
+pytest-asyncio
