@@ -22,25 +22,18 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     
-    # Generate verification token
-    verification_token = secrets.token_urlsafe(32)
-    
     # Create new user in REAL database
     hashed_pw = pwd_context.hash(user.password)
     db_user = User(
         email=user.email,
         hashed_password=hashed_pw,
-        is_verified=False,
-        verification_token=verification_token  # Need to add this field to User model
+        is_verified=False  # Keep this field for future use if needed
     )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     
-    # TODO: Send actual email here
-    # send_verification_email(user.email, verification_token)
-    
-    return {"msg": "Verification email sent! Check your inbox 📧"}
+    return {"msg": "Sign up successful 🎉"}
 
 @app.post("/login")
 def login(user: UserCreate, db: Session = Depends(get_db)):
